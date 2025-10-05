@@ -46,8 +46,9 @@ data = {
 
 df = pd.DataFrame([data])
 
-csv_file = r'C:\Users\Aditya\PyCharmMiscProject\nifty_50_tracker.csv'
+csv_file = 'nifty_50_tracker.csv'
 
 existing_df = pd.read_csv(csv_file)
 df = pd.concat([existing_df, df], ignore_index=True)
+
 df.to_csv(csv_file, index=False)
