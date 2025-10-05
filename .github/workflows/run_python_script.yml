@@ -17,10 +17,10 @@ jobs:
         python-version: '3.10'  # or your preferred version
 
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: pip install -r SMP_Python_Scripts/requirements.txt
 
     - name: Run Python script
-      run: python nifty_tracker.py
+      run: python SMP_Python_Scripts/nifty_tracker.py
 
     - name: Commit updated CSV files
       run: |
