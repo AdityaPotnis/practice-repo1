@@ -7,7 +7,10 @@ import pandas as pd
 from pandas import date_range
 
 url = f'https://www.google.com/finance/quote/NIFTY_50:INDEXNSE'
-response = requests.get(url)
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
+}
+response = requests.get(url, headers=headers)
 soup = BeautifulSoup(response.text, 'html.parser')
 
 close_v = soup.find(class_="YMlKec").text.strip() #Nifty 50 closing value
@@ -52,4 +55,5 @@ existing_df = pd.read_csv(csv_file)
 df = pd.concat([existing_df, df], ignore_index=True)
 
 df.to_csv(csv_file, index=False)
+
 
