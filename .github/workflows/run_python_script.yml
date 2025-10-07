@@ -20,7 +20,7 @@ jobs:
       run: pip install -r SMP_Python_Scripts/requirements.txt
 
     - name: Run Python script
-      run: python SMP_Python_Scripts/nifty_tracker.py
+      run: python SMP_Python_Scripts/nifty_tracker_yf.py
 
     - name: Commit updated CSV files
       run: |
