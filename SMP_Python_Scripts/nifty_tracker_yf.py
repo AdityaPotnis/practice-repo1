@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 import os
 import csv
 
-OUT_PATH = r'data\nifty_50_tracker_yf.csv'
+OUT_PATH = 'data/nifty_50_tracker_yf.csv'
 TICKER = "^NSEI"  # Yahoo ticker for Nifty 50 (commonly ^NSEI). Verify if needed.
 
 def ensure_dir(path):
@@ -51,4 +51,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
