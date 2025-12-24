@@ -2,8 +2,13 @@ name: Run Python Script and Update CSV
 
 on:
   workflow_dispatch:
+<<<<<<< HEAD
 #  schedule:
 #    - cron: '0 14 * * 1-5'
+=======
+  # schedule:
+  #   - cron: '0 14 * * 1-5'
+>>>>>>> 21138026842e7a1037a4430007ee3ad59f7dd7f9
 
 jobs:
   run-script:
