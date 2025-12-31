@@ -39,7 +39,7 @@ assembler = VectorAssembler(
 latest_features = assembler.transform(latest)
 
 # Load model
-model = LinearRegressionModel.load("models/linear_nifty_model")
+model = LinearRegressionModel.load("model/linear_nifty_model")
 
 prediction = model.transform(latest_features).select("prediction").collect()[0][0]
 
