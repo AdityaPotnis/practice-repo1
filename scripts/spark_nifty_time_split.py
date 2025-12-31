@@ -74,15 +74,8 @@ model_dir = "model/linear_nifty_model"
 #     shutil.rmtree(model_dir)  # overwrite existing
 
 
-lr_model.save("./linear_nifty_model")
-# show schema and first 10 records
-# df.show()
+lr_model.save("model/linear_nifty_model")
 
-# train_df.printSchema()
-# train_df.show()
-#
-# test_df.printSchema()
-# test_df.show()
+print("Model trained and saved")
 
-# stop Spark
 spark.stop()

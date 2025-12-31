@@ -2,4 +2,6 @@ yfinance
 pandas
 requests
 beautifulsoup4
-pandas
+numpy
+pyspark==3.5.1
+
