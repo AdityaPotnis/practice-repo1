@@ -45,7 +45,7 @@ prediction = model.transform(latest_features).select("prediction").collect()[0][
 
 # Save prediction
 output = pd.DataFrame([{
-    "prediction_for_next_day_close": round(prediction, 2)
+    "prediction_for_next_day_close": round(float(prediction), 2)
 }])
 
 today = datetime.datetime.now().strftime("%Y%m%d")
