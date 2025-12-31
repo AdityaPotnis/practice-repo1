@@ -1,5 +1,0 @@
-Model Coefficients:
-Feature 1 (Prev Close): 0.9999999999408297
-Feature 2 (Change): 1.0000000000002327
-Feature 3 (Moving Average): 5.933916568758321e-11
-Intercept: -3.6792787867328268e-09
