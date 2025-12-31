@@ -5,7 +5,6 @@ from pyspark.ml.feature import VectorAssembler
 from pyspark.ml.regression import LinearRegression
 from pyspark.ml.evaluation import RegressionEvaluator
 import os
-import pickle
 
 # === 1. Start Spark session in local mode ===
 # os.environ["HADOOP_HOME"] = "C:\spark-3.5.1-bin-hadoop3"
@@ -74,7 +73,7 @@ model_dir = "model/linear_nifty_model"
 #     shutil.rmtree(model_dir)  # overwrite existing
 
 
-lr_model.save("model/linear_nifty_model")
+lr_model.write().overwrite().save("model/linear_nifty_model")
 
 print("Model trained and saved")
 
