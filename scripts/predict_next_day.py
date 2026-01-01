@@ -1,7 +1,7 @@
 from pyspark.sql import SparkSession
 from pyspark.ml.regression import LinearRegressionModel
 from pyspark.ml.feature import VectorAssembler
-from pyspark.sql.functions import col, lag, lit, to_date, round
+from pyspark.sql.functions import col, lag, lit, to_date, round, current_date
 from pyspark.sql.window import Window
 import pandas as pd
 import datetime
@@ -41,17 +41,20 @@ latest_features = assembler.transform(latest)
 # Load model
 model = LinearRegressionModel.load("model/linear_nifty_model")
 
-prediction = model.transform(latest_features).select("prediction").collect()[0][0]
+
+prediction_df = model.transform(latest_features).select(current_date().alias("Prediction Date"), round(col("prediction"),2).alias("Predicted Close"))
+
+# prediction = model.transform(latest_features).select("prediction").collect()[0][0]
 
 # Save prediction
-output = pd.DataFrame([{
-    "prediction_for_next_day_close": round(float(prediction), 2)
-}])
+# output = pd.DataFrame([{
+#     "prediction_for_next_day_close": round(float(prediction), 2)
+# }])
 
 today = datetime.datetime.now().strftime("%Y%m%d")
 
-os.makedirs("data/predictions", exist_ok=True)
-output.to_csv("data/predictions/nifty_prediction_{today}.csv", index=False)
+# os.makedirs("data/predictions", exist_ok=True)
+prediction_df.coalesce(1).write.mode("overwrite").csv("data/predictions/nifty_prediction_{today}.csv", header=True)
 
 spark.stop()
 print("Prediction generated and saved")
