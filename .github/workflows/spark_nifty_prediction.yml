@@ -34,25 +34,19 @@ jobs:
         run: |
           python scripts/predict_next_day.py
 
-      - name: Commit results to new branch
-        run: |
-          BRANCH_NAME="spark-prediction-$(date +'%Y%m%d-%H%M%S')"
-          git checkout -b $BRANCH_NAME
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add model data/predictions
-          git commit -m "Add NIFTY next-day prediction"
-          git push origin $BRANCH_NAME
-          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
-      - name: Create Pull Request
+      - name: Create Pull Request with predictions
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ env.BRANCH_NAME }}
           base: main
+          branch: spark-prediction-${{ github.run_id }}
           title: "Spark ML: NIFTY next-day prediction"
           body: |
-            Automated Spark ML prediction output.
+            Automated Spark ML run:
+            - Model trained
+            - Next-day NIFTY close predicted
+          commit-message: "Add Spark ML model and NIFTY prediction"
+          delete-branch: false
 
 
 
