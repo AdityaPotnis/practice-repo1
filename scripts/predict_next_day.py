@@ -52,9 +52,10 @@ prediction_df = model.transform(latest_features).select(current_date().alias("Pr
 # }])
 
 today = datetime.datetime.now().strftime("%Y%m%d")
+output_path = f"data/predictions/nifty_prediction_{today}"
 
 # os.makedirs("data/predictions", exist_ok=True)
-prediction_df.coalesce(1).write.mode("overwrite").csv("data/predictions/nifty_prediction_{today}.csv", header=True)
+prediction_df.coalesce(1).write.mode("overwrite").option("header", "true").csv(output_path)
 
 spark.stop()
 print("Prediction generated and saved")
