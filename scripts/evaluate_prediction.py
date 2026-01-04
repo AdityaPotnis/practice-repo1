@@ -10,6 +10,7 @@ spark = SparkSession.builder \
 
 today = datetime.datetime.now().strftime("%Y%m%d")
 pred_file = f"data/predictions/nifty_prediction_{today}"
+est_file = f"data/predictions/nifty_prediction_{today}/Estimations.csv"
 
 pred = spark.read.option("header", True).option("inferSchema", True) \
     .csv(pred_file)
@@ -31,7 +32,7 @@ rmse_df = joined.withColumn(
     sqrt((pow(col("predicted_close") - col("close"), 2)))
 )
 
-rmse_df.write.mode("overwrite").option("header", True).csv(pred_file)
+rmse_df.write.mode("overwrite").option("header", True).csv(est_file)
 
 rmse = rmse_df.select("RMSE").collect()[0][0]
 
