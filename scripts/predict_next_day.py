@@ -14,7 +14,7 @@ spark = SparkSession.builder \
 
 # Load historical data
 df = spark.read.option("header", True).option("inferSchema", True) \
-    .csv("data/NIFTY 50-1-year.csv")
+    .csv("data/NIFTY 50-data.csv")
 df = df.toDF(*[c.strip() for c in df.columns])
 
 df = df.drop("Shares Traded", "Turnover (₹ Cr)")
@@ -32,7 +32,7 @@ df = df.na.drop()
 latest = df.orderBy("Trading Date", ascending=False).limit(1)
 
 assembler = VectorAssembler(
-    inputCols=["Prev Close", "Change", "Moving Average"],
+    inputCols=["Prev Close", "Change"],
     outputCol="features"
 )
 
