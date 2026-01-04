@@ -22,7 +22,7 @@ actual = actual.toDF(*[c.replace(" ", "_").lower() for c in actual.columns])
 
 joined = pred.join(
     actual,
-    pred.prediction_date == actual.training_date,
+    pred.prediction_date == actual.trading_date,
     "inner"
 )
 
