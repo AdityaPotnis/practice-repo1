@@ -18,11 +18,12 @@ prev_close_v = soup.find(class_="P6K39c").text.strip() #Nifty 50 previous closin
 change_perc_v = soup.find(class_="JwB6zf").text.strip() #Nifty 50 change value
 #change_perc = soup.find(class_="WlRRw IsqQVc fw-price-dn").text.strip() #Nifty 50 change percentage
 range_v = soup.find_all(class_="P6K39c")[1].text.strip()     #Nifty 50 range value
+open_v = soup.find_all(class_="mfs7Fc")[2].text.strip()      #Nifty 50 open value
 
-print(f'Nifty 50 closing value: {close_v}')
-print(f'Nifty 50 previous closing value: {prev_close_v}')
-print(f'Nifty 50 change value: {change_perc_v}')
-print(f'Nifty 50 range value: {range_v}')
+# print(f'Nifty 50 closing value: {close_v}')
+# print(f'Nifty 50 previous closing value: {prev_close_v}')
+# print(f'Nifty 50 change value: {change_perc_v}')
+# print(f'Nifty 50 range value: {range_v}')
 
 range_day_values = range_v.split(" - ")
 day_low = range_day_values[0].strip()
@@ -40,20 +41,28 @@ data = {
     'Trading Date': trading_date,
     'Close': close_v,
     'Prev Close': prev_close_v,
-    'Day Low': day_low,
-    'Day High': day_high,
+    'Low': day_low,
+    'High': day_high,
     'Change': index_change,
     'Day Range': day_range,
     'change in index' : index_change,
-    'Change percent': change_perc_v}
+    'Change percent': change_perc_v,
+    'Open': 25000,
+    'Shares Traded':0,
+    'Turnover (₹ Cr)': 0}
 
 df = pd.DataFrame([data])
 
-csv_file = 'data/nifty_50_tracker.csv'
-
+df = df[['Trading Date', 'Open', 'High', 'Low', 'Close', 'Shares Traded', 'Turnover (₹ Cr)']]
+# print(df)
+csv_file = r'data/NIFTY 50-data.csv'
+# print(df)
 existing_df = pd.read_csv(csv_file)
-df = pd.concat([existing_df, df], ignore_index=True)
-
-df.to_csv(csv_file, index=False)
+# print(existing_df.head())
+df_append = pd.concat([df, existing_df], ignore_index=True)
+#print(df_append.head())
+df_append.to_csv(csv_file, index=False)
+# print(df_append.head())
+# # df.to_csv(csv_file, index=False)
 
 
