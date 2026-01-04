@@ -32,7 +32,7 @@ df = df.na.drop()
 latest = df.orderBy("Trading Date", ascending=False).limit(1)
 
 assembler = VectorAssembler(
-    inputCols=["Prev Close", "Change"],
+    inputCols=["Open" , "High" ,"Low", "Close", "Prev Close", "Change"],
     outputCol="features"
 )
 

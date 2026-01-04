@@ -62,7 +62,7 @@ train_df = df.orderBy(col("Trading Date").desc()).limit(TRAIN_SESSIONS)
 # Assemble features
 # ---------------------------------------------------
 assembler = VectorAssembler(
-    inputCols=["Prev Close", "Change"],
+    inputCols=["Open" , "High" ,"Low", "Close", "Prev Close", "Change"],
     outputCol="features"
 )
 
