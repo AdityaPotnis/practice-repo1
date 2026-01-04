@@ -25,10 +25,10 @@ joined = pred.join(
     pred.prediction_date == actual.trading_date,
     "inner"
 )
-
+joined.show(10)
 rmse_df = joined.withColumn(
     "RMSE",
-    sqrt(avg(pow(col("predicted_close") - col("close"), 2)))
+    sqrt((pow(col("predicted_close") - col("close"), 2)))
 )
 
 rmse_df.write.option("header", True).csv(pred_file)
