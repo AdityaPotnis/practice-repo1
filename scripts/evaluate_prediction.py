@@ -31,7 +31,7 @@ rmse_df = joined.withColumn(
     sqrt((pow(col("predicted_close") - col("close"), 2)))
 )
 
-rmse_df.write.option("header", True).csv(pred_file)
+rmse_df.write.mode("overwrite").option("header", True).csv(pred_file)
 
 rmse = rmse_df.select("RMSE").collect()[0][0]
 
