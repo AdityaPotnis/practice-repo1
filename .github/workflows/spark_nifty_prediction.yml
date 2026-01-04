@@ -28,7 +28,7 @@ jobs:
 
       - name: Train Spark ML model
         run: |
-          python scripts/spark_nifty_time_split.py
+          python scripts/train_model.py
 
       - name: Predict next NIFTY close
         run: |
