@@ -1,0 +1,2 @@
+prediction_date,predicted_close,trading_date,open,high,low,close,shares_traded,turnover_(₹_cr),RMSE
+2026-01-07,26328.55,2026-01-07,25000.0,26187.15,26067.9,49412.61,0.0,0.0,23084.06
