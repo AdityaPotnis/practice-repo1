@@ -2,8 +2,8 @@ name: NIFTY Spark Prediction
 
 on:
   #workflow_dispatch:
-  schedule:
-    - cron: '30 2 * * 1-5'
+  # schedule:
+  #   - cron: '30 2 * * 1-5'
 
 jobs:
   spark-ml:
